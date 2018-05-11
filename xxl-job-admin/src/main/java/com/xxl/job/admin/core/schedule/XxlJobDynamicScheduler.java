@@ -1,5 +1,6 @@
 package com.xxl.job.admin.core.schedule;
 
+import com.xxl.job.admin.core.conf.QuartzSchedulerConfig;
 import com.xxl.job.admin.core.jobbean.RemoteHttpJobBean;
 import com.xxl.job.admin.core.model.XxlJobInfo;
 import com.xxl.job.admin.core.thread.JobFailMonitorHelper;
@@ -20,10 +21,16 @@ import org.quartz.impl.triggers.CronTriggerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.concurrent.ConcurrentHashMap;
@@ -32,9 +39,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * base quartz scheduler util
  * @author xuxueli 2015-12-19 16:13:53
  */
-public final class XxlJobDynamicScheduler implements ApplicationContextAware {
+@Configuration
+public  class XxlJobDynamicScheduler implements ApplicationContextAware {
     private static final Logger logger = LoggerFactory.getLogger(XxlJobDynamicScheduler.class);
 
+    @Autowired
+    QuartzSchedulerConfig quartzSchedulerConfig;
     // ---------------------- param ----------------------
 
     // scheduler
@@ -44,6 +54,7 @@ public final class XxlJobDynamicScheduler implements ApplicationContextAware {
 	}
 
 	// accessToken
+    @Value("xxl.job.accessToken")
     private static String accessToken;
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
@@ -67,7 +78,10 @@ public final class XxlJobDynamicScheduler implements ApplicationContextAware {
 	}
 
     // ---------------------- init + destroy ----------------------
+    @PostConstruct
     public void init() throws Exception {
+
+        setScheduler(quartzSchedulerConfig.scheduler());
         // admin registry monitor run
         JobRegistryMonitorHelper.getInstance().start();
 
@@ -91,7 +105,7 @@ public final class XxlJobDynamicScheduler implements ApplicationContextAware {
             item.setTitle(I18nUtil.getString("jobconf_block_".concat(item.name())));
         }
     }
-
+    @PreDestroy
     public void destroy(){
         // admin registry stop
         JobRegistryMonitorHelper.getInstance().toStop();
