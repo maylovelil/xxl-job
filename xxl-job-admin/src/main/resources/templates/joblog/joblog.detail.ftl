@@ -67,7 +67,7 @@
     var triggerTime = '${triggerTime}';
     var logId = '${logId}';
 </script>
-<script src="${request.contextPath}/static/js/joblog.detail.1.js"></script>
+<script src="/js/joblog.detail.1.js"></script>
 
 </body>
 </html>

@@ -4,10 +4,10 @@
   	<#import "/common/common.macro.ftl" as netCommon>
 	<@netCommon.commonStyle />
     <!-- daterangepicker -->
-    <link rel="stylesheet" href="${request.contextPath}/static/adminlte/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/adminlte/plugins/daterangepicker/daterangepicker.css">
     <title>${I18n.admin_name}</title>
 </head>
-<body class="hold-transition skin-blue sidebar-mini <#if cookieMap?exists && "off" == cookieMap["xxljob_adminlte_settings"].value >sidebar-collapse</#if> ">
+<body class="hold-transition skin-blue sidebar-mini <#if cookieMap?exists  && cookieMap["xxljob_adminlte_settings"]?exists && "off" == cookieMap["xxljob_adminlte_settings"].value >sidebar-collapse</#if> ">
 <div class="wrapper">
 	<!-- header -->
 	<@netCommon.commonHeader />
@@ -138,10 +138,10 @@
 </div>
 <@netCommon.commonScript />
 <!-- daterangepicker -->
-<script src="${request.contextPath}/static/adminlte/plugins/daterangepicker/moment.min.js"></script>
-<script src="${request.contextPath}/static/adminlte/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="/adminlte/plugins/daterangepicker/moment.min.js"></script>
+<script src="/adminlte/plugins/daterangepicker/daterangepicker.js"></script>
 <#-- echarts -->
-<script src="${request.contextPath}/static/plugins/echarts/echarts.common.min.js"></script>
-<script src="${request.contextPath}/static/js/index.js"></script>
+<script src="/plugins/echarts/echarts.common.min.js"></script>
+<script src="/js/index.js"></script>
 </body>
 </html>

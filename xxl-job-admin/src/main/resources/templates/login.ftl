@@ -3,13 +3,13 @@
 <head>
   	<#import "/common/common.macro.ftl" as netCommon>
 	<@netCommon.commonStyle />
-    <link rel="stylesheet" href="${request.contextPath}/static/adminlte/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="/adminlte/plugins/iCheck/square/blue.css">
 	<title>${I18n.admin_name}</title>
 </head>
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a><b>XXL</b>JOB</a>
+			<a><b>MYC</b>JOB</a>
 		</div>
 		<form id="loginForm" method="post" >
 			<div class="login-box-body">
@@ -38,9 +38,9 @@
 		</form>
 	</div>
 <@netCommon.commonScript />
-<script src="${request.contextPath}/static/plugins/jquery/jquery.validate.min.js"></script>
-<script src="${request.contextPath}/static/adminlte/plugins/iCheck/icheck.min.js"></script>
-<script src="${request.contextPath}/static/js/login.1.js"></script>
+<script src="/plugins/jquery/jquery.validate.min.js"></script>
+<script src="/adminlte/plugins/iCheck/icheck.min.js"></script>
+<script src="/js/login.1.js"></script>
 
 </body>
 </html>

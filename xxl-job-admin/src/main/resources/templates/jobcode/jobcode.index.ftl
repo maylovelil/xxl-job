@@ -3,8 +3,8 @@
 <head>
   	<#import "/common/common.macro.ftl" as netCommon>
 	<@netCommon.commonStyle />
-	<link rel="stylesheet" href="${request.contextPath}/static/plugins/codemirror/lib/codemirror.css">
-	<link rel="stylesheet" href="${request.contextPath}/static/plugins/codemirror/addon/hint/show-hint.css">
+	<link rel="stylesheet" href="/plugins/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="/plugins/codemirror/addon/hint/show-hint.css">
     <title>${I18n.admin_name}</title>
 	<style type="text/css">
 		.CodeMirror {
@@ -115,34 +115,34 @@
 <@netCommon.commonScript />
 
 
-    <#assign glueTypeModeSrc = "${request.contextPath}/static/plugins/codemirror/mode/clike/clike.js" />
+    <#assign glueTypeModeSrc = "/plugins/codemirror/mode/clike/clike.js" />
     <#assign glueTypeIdeMode = "text/x-java" />
 
     <#if jobInfo.glueType == "GLUE_GROOVY" >
-        <#assign glueTypeModeSrc = "${request.contextPath}/static/plugins/codemirror/mode/clike/clike.js" />
+        <#assign glueTypeModeSrc = "/plugins/codemirror/mode/clike/clike.js" />
         <#assign glueTypeIdeMode = "text/x-java" />
     <#elseif jobInfo.glueType == "GLUE_SHELL" >
-        <#assign glueTypeModeSrc = "${request.contextPath}/static/plugins/codemirror/mode/shell/shell.js" />
+        <#assign glueTypeModeSrc = "/plugins/codemirror/mode/shell/shell.js" />
         <#assign glueTypeIdeMode = "text/x-sh" />
     <#elseif jobInfo.glueType == "GLUE_PYTHON" >
-        <#assign glueTypeModeSrc = "${request.contextPath}/static/plugins/codemirror/mode/python/python.js" />
+        <#assign glueTypeModeSrc = "/plugins/codemirror/mode/python/python.js" />
         <#assign glueTypeIdeMode = "text/x-python" />
     <#elseif jobInfo.glueType == "GLUE_NODEJS" >
-        <#assign glueTypeModeSrc = "${request.contextPath}/static/plugins/codemirror/mode/javascript/javascript.js" />
+        <#assign glueTypeModeSrc = "/plugins/codemirror/mode/javascript/javascript.js" />
         <#assign glueTypeIdeMode = "text/javascript" />
     </#if>
 
 
-<script src="${request.contextPath}/static/plugins/codemirror/lib/codemirror.js"></script>
+<script src="/plugins/codemirror/lib/codemirror.js"></script>
 <script src="${glueTypeModeSrc}"></script>
-<script src="${request.contextPath}/static/plugins/codemirror/addon/hint/show-hint.js"></script>
-<script src="${request.contextPath}/static/plugins/codemirror/addon/hint/anyword-hint.js"></script>
+<script src="/plugins/codemirror/addon/hint/show-hint.js"></script>
+<script src="/plugins/codemirror/addon/hint/anyword-hint.js"></script>
 
 <script>
 var id = '${jobInfo.id}';
 var ideMode = '${glueTypeIdeMode}';
 </script>
-<script src="${request.contextPath}/static/js/jobcode.index.1.js"></script>
+<script src="/js/jobcode.index.1.js"></script>
 
 </body>
 </html>
